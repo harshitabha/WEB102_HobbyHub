@@ -1,20 +1,31 @@
 import { useLocation } from "react-router-dom";
-import Button from "../components/Button";
 import Navbar_Login from "../components/Navbar_login";
+import PostTile from "../components/PostTile";
+import { useEffect, useState } from "react";
 
 const Home = ({navigate, supabase}) => {
     const userId = useLocation().state?.user_id;
-    const handleLogOut = async () => {
-        let { error } = await supabase.auth.signOut()
-        if (error) {
-            alert("Error logging out");
-            console.error(error);
-            return;
-        } else {
-            navigate("/");
-        }
+    
+    const [posts, setPosts] = useState([]);
 
-    }
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const { data, error } = await supabase
+                .from('Posts')
+                .select('*');
+            if (error) {
+                console.error(error);
+                return;
+            }
+            setPosts(data);
+        }
+        fetchPosts();
+    }, []);
+
+    useEffect(() => {
+        console.log(posts);
+    }, [posts]);
+
     
     return (
         <div>
@@ -23,8 +34,17 @@ const Home = ({navigate, supabase}) => {
                 supabase={supabase}
                 userId= {userId}/>
             <div className="home-pg pg">
-                <h1>Welcome to HobbyHub!</h1>
-                <p>Explore and share your hobbies with others.</p>
+                {posts.map((post) => (
+                    <PostTile 
+                        key={post.id}
+                        title={post.title}
+                        author_id={post.user_id}
+                        upvotes={post.upvotes}
+                        downvotes={post.downvotes}
+                        supabase={supabase}
+                        userId={userId}
+                    />
+                ))}
             </div>
 
         </div>

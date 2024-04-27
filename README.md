@@ -10,10 +10,10 @@ Time spent: 12 hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] **A create form that allows the user to create posts**
-- [ ] **Posts have a title and optionally additional textual content and/or an image added as an external image URL**
-- [ ] **A home feed displaying previously created posts**
-- [ ] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
+- [✅] **A create form that allows the user to create posts**
+- [✅] **Posts have a title and optionally additional textual content and/or an image added as an external image URL**
+- [✅] **A home feed displaying previously created posts**
+- [✅] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
 - [ ] **Clicking on a post shall direct the user to a new page for the selected post**
 - [ ] **Users can sort posts by either their created time or upvotes count**
 - [ ] **Users can search for posts by title**
@@ -41,7 +41,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTdza3phM3JtYWMzYWdoMm5wODU0dTJ5MzJxaHV0eXVlMXRzaXd1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GZVScY9OhJZwwiC4kI/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
