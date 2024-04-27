@@ -4,11 +4,12 @@ import "./PostTile.css";
 const PostTile = ({
     postId,
     title,
+    image,
     upvotes,
     downvotes,
     author_id,
     navigate,
-    supabase
+    supabase,
 }) => {
     const [author, setAuthor] = useState("");
     useEffect(() => {
@@ -30,11 +31,15 @@ const PostTile = ({
         <div 
             className="post-tile"
             onClick={() => navigate(`/post/${postId}`)}>
-            <h3>{title}</h3>
-            <p>Author: {author}</p>
+            <h3 className="tile-txt">{title}</h3>
+            <img 
+                src={image} 
+                alt="Post Image"
+                className="tile-img" />
+            <p className="tile-txt">Author: {author}</p>
             <div className="row">
-                <p>Upvotes: {upvotes}</p>
-                <p>Downvotes: {downvotes}</p>
+                <p style={{margin: "0 0 2vh 0"}}>Upvotes: {upvotes}</p>
+                <p style={{margin: "0 0 2vh 0"}}>Downvotes: {downvotes}</p>
             </div>
         </div>
     );

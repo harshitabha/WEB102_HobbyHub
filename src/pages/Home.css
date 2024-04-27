@@ -1,0 +1,33 @@
+@import url("../colors.css");
+
+.home-pg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+}
+
+
+.sort-btn {
+    height: 90%;
+    font-size: 1rem;
+    padding: 0.5em 1.2em;
+    background-color: var(--light-lav);
+
+    &:hover {
+        background-color: var(--light-lav-hover);
+        color: var(--dark-text);
+    }
+}
+
+.sorting-btns {
+    align-items: center;
+    width: 60% !important;
+    /* justify-content: space-between !important; */
+}
