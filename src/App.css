@@ -1,6 +1,12 @@
 #root {
   overflow-x: hidden;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .row {

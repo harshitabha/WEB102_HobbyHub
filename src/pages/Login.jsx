@@ -22,8 +22,11 @@ const Login = ({navigate, supabase}) => {
 
     const handleLogIn = async (e) => {
         e.preventDefault();
-        let success = await logIn();
-        if (success) navigate("/home"); // navigate to the home page if successful
+        let user_id = await logIn();
+        console.log(user_id);
+        if (user_id) navigate("/home", {state: {
+            user_id: user_id,
+        }}); // navigate to the home page if successful
     };
 
     const logIn = async () => {
@@ -41,12 +44,13 @@ const Login = ({navigate, supabase}) => {
             console.error(error);
             return false;
         }
-        return true;
+
+        return data.user.id;
     };
 
     return (
         <div>
-            <Navbar navigate={navigate}/>
+            <Navbar navigate={navigate} supabase={supabase}/>
             <div className="background-pg">
                 <div className="form-container">
                     <h2 className="form-title">Log In</h2>

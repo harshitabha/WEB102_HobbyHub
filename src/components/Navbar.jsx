@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 // Temp will look the like user is alway not logged in
 // will update once user auth is implemented
-const Navbar = ({navigate}) => {
+const Navbar = ({navigate, supabase}) => {
+
     return (
         <nav className="navbar row">
             <div className="nav-icon-container" onClick={() => navigate("/")}>

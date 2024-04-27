@@ -30,3 +30,16 @@
         color: var(--med-light-lav);
     }
 }
+
+.none {
+    background-color: transparent;
+    border: none;
+    color: var(--dark-text);
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        background-color: transparent;
+        border: none;
+        color: var(--grey-text);
+    }
+}

@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2vh;
 }
 
 .navicon {
@@ -16,7 +17,7 @@
 
 .nav-title{
     margin: 0;
-    font-size: 4vh;
+    font-size: 3.5vh;
 }
 
 .nav-icon-container {
@@ -35,4 +36,9 @@
     &:hover {
         color: var(--grey-text);
     }
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
 }

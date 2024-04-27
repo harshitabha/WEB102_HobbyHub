@@ -30,8 +30,10 @@ const Signup = ({navigate, supabase}) => {
             return;
         }
 
-        let success = await signUpUser();
-        if (success) navigate("/home");
+        let user_id = await signUpUser();
+        if (user_id) navigate("/home", {state: {
+            user_id: user_id,
+        }}); // navigate to the home page if successful
     };
     
     const signUpUser = async () => {
@@ -39,31 +41,27 @@ const Signup = ({navigate, supabase}) => {
         let { data, error } = await supabase.auth.signUp({
             email: userInfo.email,
             password: userInfo.password,
+            displayName: userInfo.username,
         })
 
         if (error) {
             alert("Error signing up");
             console.error(error);
             return false;
-        } 
-        
-        // add the user to the user's table
-        let { tableData, tableErr } = await supabase.from('Users').insert([{ 
-            email: userInfo.email,
-            username: userInfo.username,
-        }]);
-
-        if (tableErr) {
-            console.error(tableErr);
-            return false;
         }
-
-        return true;
+        
+        ({data, error} = await supabase.from('Users').insert([{
+            id: data.user.id,
+            username: userInfo.username,
+            email: userInfo.email
+        }]));
+        if (error) console.log(error);
+        return data.id;
     }
 
     return (
         <div>
-            <Navbar navigate={navigate}/>
+            <Navbar navigate={navigate} supabase={supabase}/>
             <div className="background-pg">
                 <div className="form-container">
                     <h2 className="form-title">Sign Up</h2>
@@ -99,7 +97,7 @@ const Signup = ({navigate, supabase}) => {
                         <Button 
                             content={"Sign Up"}
                             submit={true}
-                            onClick={(e) => handleSignUp(e)}/>
+                            handleClick={(e) => handleSignUp(e)}/>
                     </form>
                 </div>
             </div>
