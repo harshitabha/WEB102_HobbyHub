@@ -8,6 +8,8 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
+import Post from './pages/Post'
+import NotFound from './pages/NotFound'
 
 /* Font Imports */
 import '@fontsource/roboto/300.css';
@@ -31,6 +33,8 @@ function App() {
         <Route path="/signup" element={<Signup navigate={navigate} supabase={supabase}/>} />
         <Route path="/home" element={<Home navigate={navigate} supabase={supabase}/>} />
         <Route path="/create-post" element={<CreatePost navigate={navigate} supabase={supabase}/>} />
+        <Route path="/post/:id" element={<Post navigate={navigate} supabase={supabase}/>} />
+        <Route path="/*" element={<NotFound navigate={navigate} supabase={supabase}/>} />
       </Routes>
 
     </>

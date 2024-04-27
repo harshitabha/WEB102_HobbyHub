@@ -29,6 +29,7 @@ const Navbar_Login = ({navigate, supabase, userId}) => {
             </div>
 
             <div className="nav-links">
+                <Link to="/home" className="nav-link" state={{user_id: userId}}>Home</Link>
                 <Link to="/create-post" className="nav-link" state={{user_id: userId}}>Create</Link>
                 <Button
                     content={"Logout"}

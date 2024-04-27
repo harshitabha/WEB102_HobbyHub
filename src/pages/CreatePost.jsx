@@ -70,12 +70,14 @@ const CreatePost = ({navigate, supabase}) => {
                         onChange={handleChange}
                         className='text-area form-txt'
                     ></textarea>
-                    <TextInput 
-                        placeholder={"Image URL (Optional)"}
-                        classes={"post-form-input form-txt"}
-                        value={post.image}
-                        handleChange={handleChange}
-                        name={"image"}/>
+                    <div className="row">
+                        <TextInput 
+                            placeholder={"Image URL (Optional)"}
+                            classes={"post-form-input form-txt"}
+                            value={post.image}
+                            handleChange={handleChange}
+                            name={"image"}/>
+                    </div>
                     <Button 
                         submit={true}
                         content={"Create Post"}
