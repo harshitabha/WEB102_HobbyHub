@@ -2,11 +2,11 @@ import Navbar from "../components/Navbar";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./Signup.css";
 
-const Signup = ({navigate}) => {
+const Signup = ({navigate, supabase}) => {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
@@ -22,10 +22,44 @@ const Signup = ({navigate}) => {
         }));
     }
 
-    const handleSignUp = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        console.log("Sign Up Button Clicked");
+        // make sure the passwords match
+        if (userInfo.password !== userInfo.passVerify) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        let success = await signUpUser();
+        if (success) navigate("/home");
     };
+    
+    const signUpUser = async () => {
+        // sign the user up
+        let { data, error } = await supabase.auth.signUp({
+            email: userInfo.email,
+            password: userInfo.password,
+        })
+
+        if (error) {
+            alert("Error signing up");
+            console.error(error);
+            return false;
+        } 
+        
+        // add the user to the user's table
+        let { tableData, tableErr } = await supabase.from('Users').insert([{ 
+            email: userInfo.email,
+            username: userInfo.username,
+        }]);
+
+        if (tableErr) {
+            console.error(tableErr);
+            return false;
+        }
+
+        return true;
+    }
 
     return (
         <div>

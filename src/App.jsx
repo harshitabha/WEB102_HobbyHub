@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Home from './pages/Home'
 
 /* Font Imports */
 import '@fontsource/roboto/300.css';
@@ -25,11 +26,9 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Landing navigate={navigate}/>} />
-        <Route path="/login" element={<Login navigate={navigate}/>} />
-        <Route path="/signup" element={<Signup navigate={navigate}/>} />
-        {/* <Route path="/hobbies" element={<Hobbies />} />
-        <Route path="/hobbies/:id" element={<Hobby />} />
-        <Route path="/hobbies/:id/edit" element={<EditHobby />} /> */}
+        <Route path="/login" element={<Login navigate={navigate} supabase={supabase}/>} />
+        <Route path="/signup" element={<Signup navigate={navigate} supabase={supabase}/>} />
+        <Route path="/home" element={<Home navigate={navigate} supabase={supabase}/>} />
       </Routes>
 
     </>

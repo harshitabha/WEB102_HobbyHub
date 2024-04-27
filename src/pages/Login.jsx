@@ -6,7 +6,7 @@ import { useState } from "react";
 
 // import "./Signup.css";
 
-const Login = ({navigate}) => {
+const Login = ({navigate, supabase}) => {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
@@ -20,9 +20,28 @@ const Login = ({navigate}) => {
         }));
     }
 
-    const handleLogIn = (e) => {
+    const handleLogIn = async (e) => {
         e.preventDefault();
-        console.log("Sign Up Button Clicked");
+        let success = await logIn();
+        if (success) navigate("/home"); // navigate to the home page if successful
+    };
+
+    const logIn = async () => {
+        let { data, error } = await supabase.auth.signInWithPassword({
+            email: userInfo.email,
+            password: userInfo.password,
+        })
+
+        if (error) {
+            alert("Invalid login credentials");
+            setUserInfo({
+                email: "",
+                password: "",
+            });
+            console.error(error);
+            return false;
+        }
+        return true;
     };
 
     return (
@@ -50,7 +69,8 @@ const Login = ({navigate}) => {
                         <Button 
                             content={"Log In"}
                             submit={true}
-                            onClick={(e) => handleLogIn(e)}/>
+                            handleClick={(e) => handleLogIn(e)}
+                            on/>
                     </form>
                 </div>
             </div>
