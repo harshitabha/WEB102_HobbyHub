@@ -7,7 +7,7 @@ const Landing = ({navigate}) => {
     return (
         <>
             <Navbar navigate={navigate}/>
-            <div className='landing-pg'>
+            <div className='background-pg'>
                 <h1>Welcome to D&D Hobby Hub</h1>
                 <p className='intro-txt'>Find everything D&D related here!</p>
                 <div className="row" style={{width: '40%'}}>
