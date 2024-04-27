@@ -1,12 +1,15 @@
 @import url("../colors.css");
 
+nav {
+    margin: 0 !important;
+}
+
 .navbar {
-    background-color: rgba(179, 136, 255, 0.6);
+    background-color: rgba(181, 138, 255, 0.6);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2vh;
 }
 
 .navicon {

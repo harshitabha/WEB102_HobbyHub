@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import "./PostTile.css";
 
 const PostTile = ({
@@ -36,10 +38,23 @@ const PostTile = ({
                 src={image} 
                 alt="Post Image"
                 className="tile-img" />
-            <p className="tile-txt">Author: {author}</p>
+            <div className="row tile-txt min-content">
+                <p>Posted by: </p>
+                <p className="var-txt">{author}</p>
+            </div>
             <div className="row">
-                <p style={{margin: "0 0 2vh 0"}}>Upvotes: {upvotes}</p>
-                <p style={{margin: "0 0 2vh 0"}}>Downvotes: {downvotes}</p>
+                <div className="row min-content">
+                    <ThumbUpOffAltIcon className="icon" />
+                    <p className="var-txt">
+                        {upvotes}
+                    </p>
+                </div>
+                <div className="row min-content">
+                    <ThumbDownOffAltIcon className="icon" />
+                    <p className="var-txt">
+                        {downvotes}
+                    </p>
+                </div>
             </div>
         </div>
     );

@@ -52,7 +52,7 @@ const CreatePost = ({navigate, supabase}) => {
     }
 
     return (
-        <>
+        <div className='pg'>
             <Navbar_Login navigate={navigate} supabase={supabase} />
             <div className='post-form-container'>
                 <h1 className='form-title'>Create a Post</h1>
@@ -80,10 +80,11 @@ const CreatePost = ({navigate, supabase}) => {
                         submit={true}
                         content={"Create Post"}
                         handleClick={handleSubmit}
+                        classes={"form-btn"}
                         />
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 

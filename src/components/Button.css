@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     font-size: 3vh;
+    font-weight: bold;
+    margin: 1vw;
 
     background-color: var(--med-light-lav);
     color: var(--light-text);

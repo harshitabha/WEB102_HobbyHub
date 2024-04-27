@@ -3,7 +3,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
@@ -12,12 +12,19 @@
 .row {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin: 1vh 0;
   width: 100%;
+}
+
+.min-content {
+  width: fit-content;
 }
 
 .pg {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   width: 100vw;
 }

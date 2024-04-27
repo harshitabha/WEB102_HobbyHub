@@ -19,5 +19,10 @@
 }
 
 .tile-txt {
-    margin: 2vh 2vw;
+    margin: 2vh 2vw !important;
+}
+
+.var-txt {
+    margin-left: 0.5vw;
+    font-weight: bold;
 }

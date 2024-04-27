@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 - [✅] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
 - [ ] **Clicking on a post shall direct the user to a new page for the selected post**
 - [✅] **Users can sort posts by either their created time or upvotes count**
-- [ ] **Users can search for posts by title**
+- [✅] **Users can search for posts by title**
 - [ ] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
 - [ ] **Users can leave comments underneath a post on the post's separate page**
 - [ ] **Each post should have an upvote button on the post's page. Each click increases its upvotes count by one and users can upvote any number of times**
