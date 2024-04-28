@@ -7,11 +7,11 @@ const SortFilters = ({handleTime, handlePopularity}) => {
             <h2>Sort By:</h2>
             <div className="min-content row">
                 <Button 
-                    handleClick={() => handleTime}
+                    handleClick={() => handleTime()}
                     content={"Time"}
                     classes={"sort-btn"} />
                 <Button 
-                    handleClick={() => handlePopularity}
+                    handleClick={() => handlePopularity()}
                     content={"Popularity"}
                     classes={"sort-btn"} />
             </div>

@@ -3,6 +3,7 @@ import Navbar_Login from '../components/Navbar_login';
 import IconButton from '../components/IconButton';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { getElapsedTime } from '../js/time';
 
 // icons
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -11,14 +12,13 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Post = ({supabase, navigate}) => {
-    const postInfo = useLocation().state;
+    const state = useLocation().state;
 
-    const [comments, setComments] = useState(null);
-    const [author, setAuthor] = useState("");
+    const [post, setPost] = useState(null);
 
     const [votes, setVotes] = useState({
-        upvotes: postInfo.upvotes,
-        downvotes: postInfo.downvotes,
+        upvotes: state.upvotes,
+        downvotes: state.downvotes,
     });
 
     const handleVote = (voteType) => {
@@ -28,10 +28,6 @@ const Post = ({supabase, navigate}) => {
         }));
     }
 
-    /*useEffect(() => {
-        if (votes.upvotes !== postInfo.upvotes || votes.downvotes !== postInfo.downvotes) updateVotesDB();
-    }, [votes]);*/
-
     const updateVotesDB = async () => {
         const { data, error } = await supabase
             .from('Posts')
@@ -39,44 +35,95 @@ const Post = ({supabase, navigate}) => {
                 upvotes: votes['upvotes'],
                 downvotes: votes['downvotes'],
             })
-            .eq('id', postInfo.post_id)
-            .eq('user_id', postInfo.user_id);
+            .eq('id', state.post_id);
         if (error) {
             console.error(error);
             alert("Error updating votes");
         }
     }
 
-    // Pull the relavent comments for from the db
-    useEffect(() => {
-        const fetchComments = async () => {
+    const handleDelete = async () => {
+        // check if the user is the author of the post
+        if (post.user_id !== state.user_id) {
+            alert("You can only delete your own posts");
+            return;
+        } else {
             const { data, error } = await supabase
-                .from('Comments')
-                .select('*')
-                .eq('id', postInfo.post_id)
-                .eq('user_id', postInfo.user_id);
+                .from('Posts')
+                .delete()
+                .eq('id', state.post_id);
             if (error) {
                 console.error(error);
-                alert("Error fetching comments");
-                return;
+                alert("Error deleting post");
             }
-
-            setComments([...data]);
         }
+    }
 
-        const fetchAuthor = async () => {
+    const handleEdit = () => {
+        // only the author can edit the post
+        if (post.user_id !== state.user_id) {
+            alert("You can only edit your own posts");
+            return;
+        } else {
+            navigate(`/edit-post/${state.post_id}`, {state: {
+                user_id: state.user_id,
+                post: {
+                    title: post.title,
+                    content: post.content,
+                    image: post.image,
+                    post_id: state.post_id,
+                },
+            }});
+        }
+        
+    }
+
+    const setTimeStr = (timeCreated) => getElapsedTime(timeCreated);
+
+    useEffect(() => {
+        if (votes.upvotes !== state.upvotes || votes.downvotes !== state.downvotes) updateVotesDB();
+    }, [votes]);
+
+    // Pull the relavent comments for from the db
+    useEffect(() => {
+        const fetchAuthor = async (authorID) => {
             const { data, error } = await supabase
                 .from('Users')
                 .select('username')
-                .eq('id', postInfo.user_id);
+                .eq('id', authorID);
             if (error) {
                 console.error(error);
                 return;
             }
-            setAuthor(data[0].username);
+            setPost((prevPost) => ({
+                ...prevPost,
+                author: data[0].username,
+            }));
         }
-        fetchComments();
-        fetchAuthor();
+
+        const fetchPost = async () => {
+            const { data, error } = await supabase
+                .from('Posts')
+                .select('*')
+                .eq('id', state.post_id);
+            if (error) {
+                console.error(error);
+                return;
+            }
+            fetchAuthor(data[0].user_id);
+            
+            setPost((prevPost) => ({
+                ...prevPost,
+                title: data[0].title,
+                content: data[0].content,
+                image: data[0].image,
+                user_id: data[0].user_id,
+            }));
+
+            setTimeStr(data[0].created_at);
+        }
+
+        fetchPost();
 
     }, []);
 
@@ -97,24 +144,26 @@ const Post = ({supabase, navigate}) => {
                             content={votes.downvotes}
                             handleClick={() => handleVote('downvotes')} />
                         <IconButton 
-                            icon={<EditOutlinedIcon />} />
+                            icon={<EditOutlinedIcon />} 
+                            handleClick={handleEdit}/>
                         <IconButton 
-                            icon={<DeleteIcon />} />
+                            icon={<DeleteIcon />} 
+                            handleClick={handleDelete}/>
                     </div>
 
                     <div className="post-container">
                         <p className='post-info'>
-                            <b>{author}</b> Posted {postInfo.timeCreated !== "" ? postInfo.timeCreated + " ago" : "Right Now"}
+                            <b>{author}</b> Posted {state.timeCreated !== "" ? state.timeCreated + " ago" : "Right Now"}
                         </p>
-                        <h1 className="post-title">{postInfo.post_title}</h1>
+                        <h1 className="post-title">{post.title}</h1>
                         
                         <img 
-                            src={postInfo.post_img} 
+                            src={post.image} 
                             alt="Post Image" 
                             className="post_img" />
                         
                         <p className="post_txt">
-                            {postInfo.post_content}
+                            {post.content}
                         </p>
                     </div>
                 </div>

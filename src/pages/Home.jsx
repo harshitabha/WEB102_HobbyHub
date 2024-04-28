@@ -38,9 +38,9 @@ const Home = ({navigate, supabase}) => {
     const handleSort = (sortType) => {
         let sorted;
         if (sortType === 'time') {
-            sorted = sortByTime(posts);
+            sorted = sortByTime(posts.displayedPosts);
         } else if (sortType === 'upvotes') {
-            sorted = sortByUpvotes(posts);
+            sorted = sortByUpvotes(posts.displayedPosts);
         }
 
         setPosts((prevState) => ({
@@ -59,6 +59,7 @@ const Home = ({navigate, supabase}) => {
     }
 
     const sortByUpvotes = (data) => {
+        console.log('sorting by upvotes');
         let sorted = [...data];
         sorted.sort((a, b) => {
             return b.upvotes - a.upvotes;

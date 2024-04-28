@@ -9,6 +9,7 @@ import Signup from './pages/Signup'
 import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
 import Post from './pages/Post'
+import EditPost from './pages/EditPost'
 import NotFound from './pages/NotFound'
 
 /* Font Imports */
@@ -34,6 +35,7 @@ function App() {
         <Route path="/home" element={<Home navigate={navigate} supabase={supabase}/>} />
         <Route path="/create-post" element={<CreatePost navigate={navigate} supabase={supabase}/>} />
         <Route path="/post/:id" element={<Post navigate={navigate} supabase={supabase}/>} />
+        <Route path="/edit-post/:id" element={<EditPost navigate={navigate} supabase={supabase}/>} />
         <Route path="/*" element={<NotFound navigate={navigate} supabase={supabase}/>} />
       </Routes>
 
