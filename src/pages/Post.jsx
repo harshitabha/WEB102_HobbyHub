@@ -26,14 +26,18 @@ const Post = ({supabase, navigate}) => {
             ...prevVotes,
             [voteType]: prevVotes[voteType] + 1,
         }));
-        updateVotesDB(voteType);
     }
+
+    useEffect(() => {
+        updateVotesDB();
+    }, [votes]);
 
     const updateVotesDB = async (voteType) => {
         const { data, error } = await supabase
             .from('Posts')
             .update({
-                [voteType]: votes[voteType],
+                upvotes: votes['upvotes'],
+                downvotes: votes['downvotes'],
             })
             .eq('id', postInfo.post_id)
             .eq('user_id', postInfo.user_id);
