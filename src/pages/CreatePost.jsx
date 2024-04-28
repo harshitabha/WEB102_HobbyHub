@@ -48,7 +48,6 @@ const CreatePost = ({navigate, supabase}) => {
             console.error(error);
             alert("Error creating post");
         }
-        else console.log(data);
     }
 
     return (

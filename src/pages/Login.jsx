@@ -23,7 +23,6 @@ const Login = ({navigate, supabase}) => {
     const handleLogIn = async (e) => {
         e.preventDefault();
         let user_id = await logIn();
-        console.log(user_id);
         if (user_id) navigate("/home", {state: {
             user_id: user_id,
         }}); // navigate to the home page if successful

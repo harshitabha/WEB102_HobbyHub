@@ -88,10 +88,6 @@ const Home = ({navigate, supabase}) => {
 
     }, [search]);
 
-    useEffect(() => {
-        console.log(posts);
-    }, [posts]);
-
     return (
         <div>
             <Navbar_Login 
@@ -100,21 +96,24 @@ const Home = ({navigate, supabase}) => {
                 userId= {userId}/>
             <div className="home-pg ">
                 <Filters 
-                    handlePopularity={sortByUpvotes}
-                    handleTime={sortByTime}
+                    handlePopularity={() => handleSort('upvotes')}
+                    handleTime={() => handleSort('time')}
                     handleSearch={(e) => setSearch(e.target.value.trim().toLowerCase())}
                     search={search}/>
                 <div className="posts-container">
                     {posts.displayedPosts.map((post) => (
                         <>
                             <PostTile 
-                                key={post.id}
+                                postId={post.id}
                                 title={post.title}
                                 image={post.image}
+                                content={post.content}
                                 author_id={post.user_id}
                                 upvotes={post.upvotes}
                                 downvotes={post.downvotes}
+                                timeCreated={post.created_at}
                                 supabase={supabase}
+                                navigate={navigate}
                                 userId={userId}
                             />
                         </>

@@ -17,6 +17,13 @@
   width: 100%;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .min-content {
   width: fit-content;
 }
