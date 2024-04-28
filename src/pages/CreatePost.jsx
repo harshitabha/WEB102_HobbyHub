@@ -52,7 +52,10 @@ const CreatePost = ({navigate, supabase}) => {
 
     return (
         <div className='pg'>
-            <Navbar_Login navigate={navigate} supabase={supabase} />
+            <Navbar_Login 
+                navigate={navigate} 
+                supabase={supabase}
+                userId={userId} />
             <div className='post-form-container'>
                 <h1 className='form-title'>Create a Post</h1>
                 <form onSubmit={handleSubmit}>

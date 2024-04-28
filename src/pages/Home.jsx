@@ -59,7 +59,6 @@ const Home = ({navigate, supabase}) => {
     }
 
     const sortByUpvotes = (data) => {
-        console.log('sorting by upvotes');
         let sorted = [...data];
         sorted.sort((a, b) => {
             return b.upvotes - a.upvotes;
@@ -109,7 +108,7 @@ const Home = ({navigate, supabase}) => {
                                 title={post.title}
                                 image={post.image}
                                 content={post.content}
-                                author_id={post.user_id}
+                                user_id={post.user_id}
                                 upvotes={post.upvotes}
                                 downvotes={post.downvotes}
                                 timeCreated={post.created_at}

@@ -28,6 +28,7 @@ const CreatePost = ({navigate, supabase}) => {
 
         // add the post to the database
         await editPost();
+        
         navigate(`/post/${postInfo.post_id}`, {state: {
             user_id: userId,
             post_id: postInfo.post_id,
@@ -51,7 +52,10 @@ const CreatePost = ({navigate, supabase}) => {
 
     return (
         <div className='pg'>
-            <Navbar_Login navigate={navigate} supabase={supabase} />
+            <Navbar_Login 
+                navigate={navigate} 
+                supabase={supabase}
+                userId={userId} />
             <div className='post-form-container'>
                 <h1 className='form-title'>Editing Post</h1>
                 <form onSubmit={handleSubmit}>

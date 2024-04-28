@@ -16,15 +16,15 @@ const Post = ({supabase, navigate}) => {
 
     const [post, setPost] = useState(null);
 
-    const [votes, setVotes] = useState({
-        upvotes: state.upvotes,
-        downvotes: state.downvotes,
+    const [initialVotes, setVotes] = useState({
+        upvotes: 0,
+        downvotes: 0,
     });
 
     const handleVote = (voteType) => {
-        setVotes((prevVotes) => ({
-            ...prevVotes,
-            [voteType]: prevVotes[voteType] + 1,
+        setPost((prevPost) => ({
+            ...prevPost,
+            [voteType]: prevPost[voteType] + 1,
         }));
     }
 
@@ -32,8 +32,8 @@ const Post = ({supabase, navigate}) => {
         const { data, error } = await supabase
             .from('Posts')
             .update({
-                upvotes: votes['upvotes'],
-                downvotes: votes['downvotes'],
+                upvotes: post['upvotes'],
+                downvotes: post['downvotes'],
             })
             .eq('id', state.post_id);
         if (error) {
@@ -46,6 +46,7 @@ const Post = ({supabase, navigate}) => {
         // check if the user is the author of the post
         if (post.user_id !== state.user_id) {
             alert("You can only delete your own posts");
+            console.log(`Post: ${post.user_id}\nSigned in: ${state.user_id}`);
             return;
         } else {
             const { data, error } = await supabase
@@ -56,6 +57,7 @@ const Post = ({supabase, navigate}) => {
                 console.error(error);
                 alert("Error deleting post");
             }
+            navigate('/home');
         }
     }
 
@@ -63,6 +65,7 @@ const Post = ({supabase, navigate}) => {
         // only the author can edit the post
         if (post.user_id !== state.user_id) {
             alert("You can only edit your own posts");
+            console.log(`Post: ${post.user_id}\nSigned in: ${state.user_id}`);
             return;
         } else {
             navigate(`/edit-post/${state.post_id}`, {state: {
@@ -81,8 +84,9 @@ const Post = ({supabase, navigate}) => {
     const setTimeStr = (timeCreated) => getElapsedTime(timeCreated);
 
     useEffect(() => {
-        if (votes.upvotes !== state.upvotes || votes.downvotes !== state.downvotes) updateVotesDB();
-    }, [votes]);
+        if (post && (initialVotes.upvotes !== post?.upvotes || initialVotes.downvotes !== initialVotes?.downvotes)) updateVotesDB();
+    }, [post]);
+
 
     // Pull the relavent comments for from the db
     useEffect(() => {
@@ -118,9 +122,19 @@ const Post = ({supabase, navigate}) => {
                 content: data[0].content,
                 image: data[0].image,
                 user_id: data[0].user_id,
+                upvotes: data[0].upvotes,
+                downvotes: data[0].downvotes,
             }));
 
+            // set the time str
             setTimeStr(data[0].created_at);
+
+            // set the inital vote count
+            setVotes((prevVotes) => ({
+                ...prevVotes,
+                upvotes: data[0].upvotes,
+                downvotes: data[0].downvotes,
+            }));
         }
 
         fetchPost();
@@ -131,17 +145,18 @@ const Post = ({supabase, navigate}) => {
         <div className='pg'>
             <Navbar_Login 
                 navigate={navigate} 
-                supabase={supabase} />
+                supabase={supabase} 
+                userId={state.user_id}/>
             <div className="pg-content">
                 <div className="post-content row">
                     <div className="post-ops col">
                         <IconButton 
                             icon={<ThumbUpOffAltIcon />}
-                            content={votes.upvotes}
+                            content={post?.upvotes}
                             handleClick={() => handleVote('upvotes')} />
                         <IconButton 
                             icon={<ThumbDownOffAltIcon />}
-                            content={votes.downvotes}
+                            content={post?.downvotes}
                             handleClick={() => handleVote('downvotes')} />
                         <IconButton 
                             icon={<EditOutlinedIcon />} 
@@ -153,17 +168,17 @@ const Post = ({supabase, navigate}) => {
 
                     <div className="post-container">
                         <p className='post-info'>
-                            <b>{author}</b> Posted {state.timeCreated !== "" ? state.timeCreated + " ago" : "Right Now"}
+                            <b>{post?.author}</b> Posted {state.timeCreated !== "" ? state.timeCreated + " ago" : "Right Now"}
                         </p>
-                        <h1 className="post-title">{post.title}</h1>
+                        <h1 className="post-title">{post?.title}</h1>
                         
                         <img 
-                            src={post.image} 
+                            src={post?.image} 
                             alt="Post Image" 
                             className="post_img" />
                         
                         <p className="post_txt">
-                            {post.content}
+                            {post?.content}
                         </p>
                     </div>
                 </div>

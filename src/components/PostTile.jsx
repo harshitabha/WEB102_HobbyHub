@@ -7,11 +7,10 @@ import "./PostTile.css";
 const PostTile = ({
     postId,
     title,
-    content,
     image,
     upvotes,
     downvotes,
-    author_id,
+    user_id,
     timeCreated,
     navigate,
     supabase,
@@ -19,10 +18,19 @@ const PostTile = ({
     const [author, setAuthor] = useState("");
     useEffect(() => {
         const getAuthor = async (id) => {
-            const { data, error } = await supabase
+            let { data, error } = await supabase
+                .from('Posts')
+                .select('user_id')
+                .eq('id', id);
+            if (error) {
+                console.error(error);
+                return;
+            }
+
+            ({data, error} = await supabase
                 .from('Users')
                 .select('username')
-                .eq('id', id);
+                .eq('id', data[0].user_id));
             if (error) {
                 console.error(error);
                 return;
@@ -30,7 +38,7 @@ const PostTile = ({
             setAuthor(data[0].username);
         }
 
-        getAuthor(author_id);
+        getAuthor(postId);
     }, []);
 
     
@@ -40,7 +48,7 @@ const PostTile = ({
         <div 
             className="post-tile"
             onClick={() => navigate(`/post/${postId}`, {state: {
-                signed_in_user_id: author_id,
+                user_id: user_id,
                 post_id: postId,
             }})}>
             <h3 className="tile-txt">{title}</h3>
