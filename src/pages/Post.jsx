@@ -28,11 +28,11 @@ const Post = ({supabase, navigate}) => {
         }));
     }
 
-    useEffect(() => {
-        updateVotesDB();
-    }, [votes]);
+    /*useEffect(() => {
+        if (votes.upvotes !== postInfo.upvotes || votes.downvotes !== postInfo.downvotes) updateVotesDB();
+    }, [votes]);*/
 
-    const updateVotesDB = async (voteType) => {
+    const updateVotesDB = async () => {
         const { data, error } = await supabase
             .from('Posts')
             .update({
