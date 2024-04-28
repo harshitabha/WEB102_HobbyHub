@@ -45,3 +45,8 @@
     margin-bottom: 1rem;
     font-size: 1.25rem;
 }
+
+.post_img {
+    max-height: 50vh;
+    object-fit: cover;
+}

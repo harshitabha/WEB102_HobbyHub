@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const Post = ({supabase, navigate}) => {
     const state = useLocation().state;
+    console.log(state);
 
     const [post, setPost] = useState(null);
 
@@ -46,7 +47,6 @@ const Post = ({supabase, navigate}) => {
         // check if the user is the author of the post
         if (post.user_id !== state.user_id) {
             alert("You can only delete your own posts");
-            console.log(`Post: ${post.user_id}\nSigned in: ${state.user_id}`);
             return;
         } else {
             const { data, error } = await supabase
@@ -65,7 +65,6 @@ const Post = ({supabase, navigate}) => {
         // only the author can edit the post
         if (post.user_id !== state.user_id) {
             alert("You can only edit your own posts");
-            console.log(`Post: ${post.user_id}\nSigned in: ${state.user_id}`);
             return;
         } else {
             navigate(`/edit-post/${state.post_id}`, {state: {
@@ -80,6 +79,8 @@ const Post = ({supabase, navigate}) => {
         }
         
     }
+    console.log(`Post: ${post?.user_id}\nSigned in: ${state.user_id}`);
+
 
     const setTimeStr = (timeCreated) => getElapsedTime(timeCreated);
 

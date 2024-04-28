@@ -20,7 +20,7 @@ The following **required** functionality is completed:
 - [✅] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
 - [ ] **Users can leave comments underneath a post on the post's separate page**
 - [✅] **Each post should have an upvote button on the post's page. Each click increases its upvotes count by one and users can upvote any number of times**
-- [ ] **A previously created post can be edited or deleted from its post page**
+- [✅] **A previously created post can be edited or deleted from its post page**
 
 The following **optional** features are implemented:
 
@@ -41,7 +41,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTdza3phM3JtYWMzYWdoMm5wODU0dTJ5MzJxaHV0eXVlMXRzaXd1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GZVScY9OhJZwwiC4kI/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGlkdXZwbDdydWUzN3NzanZyZHhmODJ5MWJtMmc1MGF4bTd2a29zZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cyVRE9aSEJMYwXXogC/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  

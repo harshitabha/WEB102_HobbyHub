@@ -108,7 +108,7 @@ const Home = ({navigate, supabase}) => {
                                 title={post.title}
                                 image={post.image}
                                 content={post.content}
-                                user_id={post.user_id}
+                                user_id={userId}
                                 upvotes={post.upvotes}
                                 downvotes={post.downvotes}
                                 timeCreated={post.created_at}
