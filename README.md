@@ -4,7 +4,7 @@ Submitted by: Harshita Bhardwaj
 
 This web app: Is a space for D&D fanatics to come together and share their passion
 
-Time spent: 12 hours spent in total
+Time spent: 20 hours spent in total
 
 ## Required Features
 
