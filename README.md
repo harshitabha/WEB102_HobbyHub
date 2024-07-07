@@ -6,6 +6,15 @@ This web app: Is a space for D&D fanatics to come together and share their passi
 
 Time spent: 20 hours spent in total
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGlkdXZwbDdydWUzN3NzanZyZHhmODJ5MWJtMmc1MGF4bTd2a29zZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cyVRE9aSEJMYwXXogC/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ScreenToGif](https://www.screentogif.com/)
+
 ## Required Features
 
 The following **required** functionality is completed:
@@ -37,19 +46,6 @@ The following **additional** features are implemented:
 
 * [✅] Set up User Authentication with Supabase
 * [✅] When signing up for an account, users can create a custom username for them
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-
-<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGlkdXZwbDdydWUzN3NzanZyZHhmODJ5MWJtMmc1MGF4bTd2a29zZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cyVRE9aSEJMYwXXogC/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
