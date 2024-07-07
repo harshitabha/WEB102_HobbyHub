@@ -13,7 +13,7 @@ Here's a walkthrough of implemented user stories:
 <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGlkdXZwbDdydWUzN3NzanZyZHhmODJ5MWJtMmc1MGF4bTd2a29zZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cyVRE9aSEJMYwXXogC/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ScreenToGif](https://www.screentogif.com/)
+GIF created with [ScreenToGif](https://www.screentogif.com/)
 
 ## Required Features
 
