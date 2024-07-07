@@ -25,7 +25,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [ ] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation
-- [ ] Upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them.
+- [✅] Upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them.
 - [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post, the referenced post is displayed and linked, creating a thread
 - [ ] Users can customize the interface of the web app
 - [ ] Users can share and view web videos
@@ -36,6 +36,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [✅] Set up User Authentication with Supabase
+* [✅] When signing up for an account, users can create a custom username for them
 
 ## Video Walkthrough
 
